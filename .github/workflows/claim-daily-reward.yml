@@ -1,0 +1,27 @@
+name: Claim Daily Reward
+
+on:
+  schedule:
+    - cron: '15 9 * * *' # This cron expression runs the job daily at midnight
+
+jobs:
+  claim-daily-reward:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip' # caching pip dependencies
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Claim daily reward
+      env:
+        HOYO_API: ${{ secrets.HOYO_API }}
+      run: python claim_daily_reward.py

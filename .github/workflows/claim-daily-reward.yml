@@ -2,8 +2,8 @@ name: Claim Daily Reward
 
 on:
   schedule:
-    - cron: '15 9 * * *' # This cron expression runs the job daily at midnight
-  workflow_dispatch:
+    - cron: '15 6 * * *' # This cron expression runs the job daily at midnight
+#  workflow_dispatch:
 
 jobs:
   claim-daily-reward:

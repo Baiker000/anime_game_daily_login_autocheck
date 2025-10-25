@@ -7,7 +7,10 @@ async def do_check():
         crumbs = cookie.split(':')
         if len(crumbs[0]) < 2:
             continue
-        char_cookies = {'ltuid': crumbs[0], 'ltoken': crumbs[1]}
+        if crumbs[1][:2]=="v2":
+            char_cookies = {'ltuid_v2': crumbs[0], 'ltoken_v2': crumbs[1]}
+        else:
+            char_cookies = {'ltuid': crumbs[0], 'ltoken': crumbs[1]}
         character = GenshinClient(char_cookies)
         try:
             await character.claim_daily_reward()
